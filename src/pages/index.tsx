@@ -3,16 +3,20 @@ import { GetStaticProps, NextPage } from "next";
 import fs from "fs";
 import path from "path";
 import React from "react";
+import MonthlyRoster from "@/components/MonthlyRoster";
 
 interface HomePageProps {
   nurses: Nurse[];
 }
 
 const HomePage: NextPage<HomePageProps> = ({ nurses }) => {
+  console.log("nurses:");
+  console.log(nurses);
+
   return (
     <div>
       <h1>Nurse Roster Demo</h1>
-      {/* MonthlyRoster component here */}
+      <MonthlyRoster nurses={nurses} />
     </div>
   );
 };
