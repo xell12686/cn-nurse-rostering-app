@@ -6,35 +6,23 @@ export function selectNurseForShift(
   day: number,
 ): Nurse | null {
   const suitableNurses = nurses.filter((nurse) => {
+    // Check if the nurse has reached the limit of night shifts if the shift is a night shift
     if (shift === "Night" && nurse.totalNightShifts >= 5) {
       return false;
     }
-
+    // Check if the nurse has worked more than 5 consecutive days
     if (nurse.consecutiveWorkDays >= 5) {
       return false;
     }
-
-    if (nurse.shifts[day]?.includes(shift)) {
+    // Check if the nurse has already worked today
+    if (nurse.lastWorkDay === day) {
       return false;
     }
     return true;
   });
 
-  if (suitableNurses.length === 0) return null;
-
-  suitableNurses.sort((a, b) => {
-    const totalShiftsA = Object.values(a.shifts).reduce(
-      (acc, shifts) => acc + shifts.length,
-      0,
-    );
-    const totalShiftsB = Object.values(b.shifts).reduce(
-      (acc, shifts) => acc + shifts.length,
-      0,
-    );
-    return totalShiftsA - totalShiftsB;
-  });
-
-  return suitableNurses[0];
+  // Return the first suitable nurse based on their original list order
+  return suitableNurses.length > 0 ? suitableNurses[0] : null;
 }
 
 export function updateNurseSchedule(
@@ -42,18 +30,19 @@ export function updateNurseSchedule(
   shift: ShiftType,
   day: number,
 ): void {
-  if (!nurse.shifts[day]) {
-    nurse.shifts[day] = [];
-  }
-  nurse.shifts[day].push(shift);
+  // Create a deep copy of the nurse's shifts to prevent mutating shared state
+  const newShifts = { ...nurse.shifts };
 
-  if (nurse.lastWorkDay === day - 1) {
-    nurse.consecutiveWorkDays += 1;
-  } else {
-    nurse.consecutiveWorkDays = 1;
+  if (!newShifts[day]) {
+    newShifts[day] = [];
   }
+  newShifts[day].push(shift);
+
+  // Update the actual nurse object
+  nurse.shifts = newShifts;
   nurse.lastWorkDay = day;
-
+  nurse.consecutiveWorkDays =
+    nurse.lastWorkDay === day - 1 ? nurse.consecutiveWorkDays + 1 : 1;
   if (shift === "Night") {
     nurse.totalNightShifts += 1;
   }

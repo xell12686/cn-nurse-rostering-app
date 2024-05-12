@@ -21,11 +21,12 @@ export function generateRoster(
     };
 
     ["Morning", "Evening", "Night"].forEach((shift) => {
-      while (dailyAssignment.shifts[shift].length < 5) {
-        const nurse = selectNurseForShift(nurses, shift as ShiftType, day);
+      const typedShift = shift as ShiftType;
+      while (dailyAssignment.shifts[typedShift].length < 5) {
+        const nurse = selectNurseForShift(nurses, typedShift, day);
         if (!nurse) break; // Break if no available nurses
-        dailyAssignment.shifts[shift].push(nurse);
-        updateNurseSchedule(nurse, shift as ShiftType, day);
+        dailyAssignment.shifts[typedShift].push(nurse);
+        updateNurseSchedule(nurse, typedShift, day);
       }
     });
 

@@ -4,16 +4,19 @@ import React from "react";
 
 interface MonthlyRosterProps {
   nurses: Nurse[];
+  month: number;
+  year: number;
 }
 
-const MonthlyRoster: React.FC<MonthlyRosterProps> = ({ nurses }) => {
-  const roster: ShiftAssignment[] = generateRoster(
-    nurses,
-    new Date().getMonth(),
-    new Date().getFullYear(),
-  );
-  console.log(roster);
-  
+const MonthlyRoster: React.FC<MonthlyRosterProps> = ({
+  nurses,
+  month,
+  year,
+}) => {
+  const roster: ShiftAssignment[] = generateRoster(nurses, month, year);
+
+  console.log("Roster:", roster);
+
   return (
     <div className="roster-items border m-10">
       {roster.map((day, index) => (
@@ -43,3 +46,6 @@ const MonthlyRoster: React.FC<MonthlyRosterProps> = ({ nurses }) => {
 };
 
 export default MonthlyRoster;
+function useEffect(arg0: () => void, arg1: Nurse[][]) {
+  throw new Error("Function not implemented.");
+}

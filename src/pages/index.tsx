@@ -16,7 +16,7 @@ const HomePage: NextPage<HomePageProps> = ({ nurses }) => {
   return (
     <div>
       <h1>Nurse Roster Demo</h1>
-      <MonthlyRoster nurses={nurses} />
+      <MonthlyRoster nurses={nurses} month={0} year={0} />
     </div>
   );
 };
@@ -25,7 +25,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const filePath = path.join(process.cwd(), "public", "nurses.txt");
   const data = fs.readFileSync(filePath, "utf8");
   const names = data.split("\n").filter(Boolean);
-
   const nurses: Nurse[] = names.map((name, index) => ({
     id: `nurse-${index}`,
     name,
@@ -35,8 +34,13 @@ export const getStaticProps: GetStaticProps = async () => {
     shifts: {},
   }));
 
+  // Pass the current month and year as props
+  const currentDate = new Date();
+  const month = currentDate.getMonth();
+  const year = currentDate.getFullYear();
+
   return {
-    props: { nurses },
+    props: { nurses, month, year },
   };
 };
 
