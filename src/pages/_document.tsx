@@ -6,10 +6,7 @@ class AppDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="shortcut icon" href="/images/favicon.png" />
-          <link
-            rel="canonical"
-            href=""
-          />
+          <link rel="canonical" href="" />
         </Head>
         <body>
           <Main />
