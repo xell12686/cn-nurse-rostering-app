@@ -1,51 +1,44 @@
 import React from "react";
-import { Nurse, ShiftType } from "@/types";
+import { ShiftAssignment } from "@/types";
 import "./ShiftTally.css";
 
 interface ShiftsTallyProps {
-  nurses: Nurse[];
+  roster: ShiftAssignment[];
 }
 
-const ShiftsTally: React.FC<ShiftsTallyProps> = ({ nurses }) => {
-  // Function to calculate the total shifts for each nurse
-  const calculateTotalShifts = (nurse: Nurse): number => {
-    return Object.values(nurse.shifts).reduce(
-      (total, shiftTypes) => total + shiftTypes.length,
-      0,
-    );
-  };
+const ShiftsTally: React.FC<ShiftsTallyProps> = ({ roster }) => {
+  const nurseShiftCounts = roster.reduce(
+    (acc, day) => {
+      Object.values(day.shifts).forEach((nurses) => {
+        nurses.forEach((nurse) => {
+          if (!acc[nurse.id]) {
+            acc[nurse.id] = { name: nurse.name, count: 0 };
+          }
+          acc[nurse.id].count++;
+        });
+      });
+      return acc;
+    },
+    {} as { [key: string]: { name: string; count: number } },
+  );
 
   return (
     <div className="shifts-tally">
-      <h3>Nurse Shift Tally:</h3>
+      <h3>Nurses Shift Tally:</h3>
       <table>
         <thead>
           <tr>
-            <th>Nurse</th>
-            <th>Date</th>
-            <th>Shift Type</th>
+            <th>Name</th>
             <th>Total Shifts</th>
           </tr>
         </thead>
         <tbody>
-          {nurses.map((nurse) =>
-            Object.entries(nurse.shifts).map(([date, shiftTypes], index) => (
-              <tr key={`${nurse.id}-${index}`}>
-                {index === 0 && (
-                  <td rowSpan={Object.keys(nurse.shifts).length}>
-                    {nurse.name}
-                  </td>
-                )}
-                <td>{date}</td>
-                <td>{shiftTypes.join(", ")}</td>
-                {index === 0 && (
-                  <td rowSpan={Object.keys(nurse.shifts).length}>
-                    {calculateTotalShifts(nurse)}
-                  </td>
-                )}
-              </tr>
-            )),
-          )}
+          {Object.entries(nurseShiftCounts).map(([id, { name, count }]) => (
+            <tr key={id}>
+              <td>{name}</td>
+              <td>{count}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

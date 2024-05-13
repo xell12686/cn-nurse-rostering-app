@@ -2,6 +2,8 @@ import React from "react";
 import { generateRoster } from "@/common/rosterGenerator";
 import { Nurse, ShiftAssignment } from "@/types";
 import "./MonthlyRoster.css";
+import ShiftsTally from "../ShiftsTally";
+// import ShiftsTally from "../ShiftsTally";
 interface MonthlyRosterProps {
   nurses: Nurse[];
   month: number;
@@ -78,6 +80,7 @@ const MonthlyRoster: React.FC<MonthlyRosterProps> = ({
           </ol>
         </div>
       )}
+      {roster && <ShiftsTally roster={roster} />}
     </div>
   );
 };

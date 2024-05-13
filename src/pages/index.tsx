@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import MonthlyRoster from "@/components/MonthlyRoster";
 import { Nurse } from "@/types";
-import ShiftsTally from "@/components/ShiftsTally";
+import MonthlyRoster from "@/components/MonthlyRoster";
+import MonthYearSelector from "@/components/MonthYearSelector";
 
 const HomePage = () => {
   const [nurses, setNurses] = useState<Nurse[]>([]);
   const [loading, setLoading] = useState(true);
-  const currentDate = new Date();
-  const month = currentDate.getMonth(); // Get current month
-  const year = currentDate.getFullYear(); // Get current year
+  const [month, setMonth] = useState(new Date().getMonth());
+  const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
     const fetchNurses = async () => {
       try {
         setLoading(true);
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-        const res = await fetch(`${apiUrl}/api/nurses`);
+        const res = await fetch("/api/nurses");
         const data = await res.json();
         setNurses(data.nurses);
       } catch (error) {
@@ -36,8 +33,13 @@ const HomePage = () => {
   return (
     <div className="p-5 flex flex-col gap-10">
       <h1 className="text-2xl font-bold">CodeNation Test: Nurse Rostering</h1>
+      <MonthYearSelector
+        month={month}
+        year={year}
+        onMonthChange={setMonth}
+        onYearChange={setYear}
+      />
       <MonthlyRoster nurses={nurses} month={month} year={year} />
-      <ShiftsTally nurses={nurses} />
     </div>
   );
 };
