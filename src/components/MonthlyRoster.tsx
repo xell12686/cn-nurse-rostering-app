@@ -1,7 +1,7 @@
+import React from "react";
 import { generateRoster } from "@/common/rosterGenerator";
 import { Nurse, ShiftAssignment } from "@/types";
-import React from "react";
-
+import "./MonthlyRoster.css";
 interface MonthlyRosterProps {
   nurses: Nurse[];
   month: number;
@@ -14,38 +14,74 @@ const MonthlyRoster: React.FC<MonthlyRosterProps> = ({
   year,
 }) => {
   const roster: ShiftAssignment[] = generateRoster(nurses, month, year);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const unassignedNurses = nurses.filter((nurse) => !nurse.hasShifts);
+  const assignedNursesCount = nurses.length - unassignedNurses.length;
 
-  console.log("Roster:", roster);
+  const headers = Array.from({ length: daysInMonth }, (_, i) => {
+    const day = new Date(year, month, i + 1);
+    return (
+      <>
+        {day.toLocaleDateString("en-US", { weekday: "short" })}
+        <small>{day.getDate()}</small>
+      </>
+    );
+  });
+
+  const date = new Date(year, month);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
-    <div className="roster-items border m-10">
-      {roster.map((day, index) => (
-        <div
-          key={index}
-          className="roster-item border-b grid grid-cols-4 gap-3"
-        >
-          <div className="border-r p-2 flex items-center">
-            <h3>{day.date.toDateString()}</h3>
-          </div>
-          <div className="border-r p-2">
-            <div>Morning:</div>
-            <div>{day.shifts.Morning.map((n) => n.name).join(", ")}</div>
-          </div>
-          <div className="border-r p-2">
-            <div>Evening:</div>
-            <div>{day.shifts.Evening.map((n) => n.name).join(", ")}</div>
-          </div>
-          <div className="p-2">
-            <div>Night:</div>
-            <div>{day.shifts.Night.map((n) => n.name).join(", ")}</div>
-          </div>
-        </div>
-      ))}
+    <div className="roster-container">
+      <div className="roster-summary">
+        <h2>Roster Summary for {formattedDate}</h2>
+        <p>Total Nurses: {nurses.length}</p>
+        <p>Assigned Nurses: {assignedNursesCount}</p>
+        <p>Unassigned Nurses: {unassignedNurses.length}</p>
+      </div>
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              {headers.map((header, index) => (
+                <th key={index}>{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {["Morning", "Evening", "Night"].map((shift) => (
+              <tr key={shift} className={shift}>
+                <td>{shift}</td>
+                {roster.map((day, index) => (
+                  <td key={index}>
+                    {day.shifts[shift as keyof typeof day.shifts] // Corrected type assertion
+                      .map((nurse: Nurse) => nurse.name)
+                      .join(", ")}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="unassigned-nurses">
+        <h3>Unassigned Nurses for {formattedDate}</h3>
+        {unassignedNurses.length > 0 ? (
+          <ol>
+            {unassignedNurses.map((nurse, index) => (
+              <li key={index}>{nurse.name}</li>
+            ))}
+          </ol>
+        ) : (
+          <p>All nurses have been assigned shifts for this period.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default MonthlyRoster;
-function useEffect(arg0: () => void, arg1: Nurse[][]) {
-  throw new Error("Function not implemented.");
-}

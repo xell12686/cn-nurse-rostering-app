@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import MonthlyRoster from "@/components/MonthlyRoster";
 import { Nurse } from "@/types";
 
 const HomePage = () => {
   const [nurses, setNurses] = useState<Nurse[]>([]);
   const [loading, setLoading] = useState(true);
+  const currentDate = new Date();
+  const month = currentDate.getMonth(); // Get current month
+  const year = currentDate.getFullYear(); // Get current year
 
   useEffect(() => {
     const fetchNurses = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/nurses");
+        const apiUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+        const res = await fetch(`${apiUrl}/api/nurses`);
         const data = await res.json();
         setNurses(data.nurses);
       } catch (error) {
@@ -28,9 +33,9 @@ const HomePage = () => {
   }
 
   return (
-    <div>
-      <h1>Nurse Roster Demo</h1>
-      <MonthlyRoster nurses={nurses} month={0} year={0} />
+    <div className="p-5">
+      <h1 className="text-2xl font-bold">CodeNation Test: Nurse Rostering</h1>
+      <MonthlyRoster nurses={nurses} month={month} year={year} />
     </div>
   );
 };

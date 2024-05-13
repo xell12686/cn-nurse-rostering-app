@@ -46,4 +46,5 @@ export function updateNurseSchedule(
   if (shift === "Night") {
     nurse.totalNightShifts += 1;
   }
+  nurse.hasShifts = true;
 }

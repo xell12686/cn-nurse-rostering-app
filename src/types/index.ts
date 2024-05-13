@@ -7,6 +7,7 @@ export interface Nurse {
   consecutiveWorkDays: number;
   totalNightShifts: number;
   shifts: Record<string, ShiftType[]>;
+  hasShifts: boolean;
 }
 
 export interface ShiftAssignment {
