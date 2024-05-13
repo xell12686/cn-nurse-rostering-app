@@ -1,61 +1,88 @@
 .roster-container {
-  @apply flex flex-col gap-10;
-  .table-wrap {
-    @apply overflow-x-auto relative;
-  }
-  table {
-    @apply border-collapse border border-slate-500 bg-slate-800 table-auto w-full;
-    thead {
-      @apply bg-slate-700;
-      th:first-child {
-        @apply bg-black;
-      }
-    }
-    th,
-    td {
-      @apply border border-slate-600 font-normal p-3;
-      small {
-        @apply text-xs block;
-      }
-    }
-    th:first-child,
-    td:first-child {
-      position: sticky;
-      left: -1px;
-      background-color: inherit; /* Ensures the background matches the row */
-      z-index: 1; /* Make sure the sticky column is above the scrollable content */
-    }
-    tr {
-      td:first-child {
-        @apply text-center font-bold;
-      }
-    }
-    tr.Morning {
-      td:first-child {
-        @apply bg-yellow-500 text-black;
-      }
-    }
-    tr.Evening {
-      td:first-child {
-        @apply bg-red-800;
-      }
-    }
-    tr.Night {
-      td:first-child {
-        @apply bg-blue-700;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.unassigned-nurses {
-  h3 {
-    @apply text-xl font-semibold;
-  }
-  ol {
-    @apply list-decimal list-inside px-1 my-5 flex gap-4 flex-wrap justify-start;
-    li {
-      @apply px-0 mx-0 marker:text-slate-700;
-    }
-  }
+.roster-container .table-wrap {
+  overflow-x: auto;
+  position: relative;
+}
+
+.roster-container table {
+  border-collapse: collapse;
+  border: 1px solid #718096;
+  background-color: #2d3748;
+  width: 100%;
+}
+
+.roster-container table thead {
+  background-color: #4a5568;
+}
+
+.roster-container table thead th:first-child {
+  background-color: #000000;
+}
+
+.roster-container table th,
+.roster-container table td {
+  border: 1px solid #4a5568;
+  font-weight: normal;
+  padding: 12px;
+}
+
+.roster-container table th:first-child,
+.roster-container table td:first-child {
+  position: sticky;
+  left: -1px;
+  background-color: inherit;
+  z-index: 1;
+}
+
+.roster-container table small {
+  font-size: 0.75rem;
+  display: block;
+}
+
+.roster-container table tr td:first-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+.roster-container table tr.Morning td:first-child {
+  background-color: #ecc94b;
+  color: #000000;
+}
+
+.roster-container table tr.Evening td:first-child {
+  background-color: #822727;
+}
+
+.roster-container table tr.Night td:first-child {
+  background-color: #2b6cb0;
+}
+
+.unassigned-nurses h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.unassigned-nurses ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  padding: 0 4px;
+  margin: 20px 0;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.unassigned-nurses ol li {
+  padding: 0;
+  margin: 0;
+}
+
+.unassigned-nurses ol li::marker {
+  color: #718096;
 }

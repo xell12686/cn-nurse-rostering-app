@@ -31,7 +31,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="p-5 flex flex-col gap-10">
+    <div className="p-5 flex flex-col gap-10 text-white bg-black">
       <h1 className="text-2xl font-bold">CodeNation Test: Nurse Rostering</h1>
       <MonthYearSelector
         month={month}

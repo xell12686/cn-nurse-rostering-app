@@ -1,28 +1,45 @@
 .shifts-tally {
-  h3 {
-    @apply text-xl font-semibold;
-  }
-  ol {
-    @apply list-decimal list-inside;
-  }
-  table {
-    @apply border-collapse border border-slate-500 bg-slate-800 table-auto w-full;
-    thead {
-      @apply bg-slate-700;
-      th:first-child {
-        @apply bg-black;
-      }
-    }
-    th,
-    td {
-      @apply border border-slate-600 font-normal;
-      small {
-        @apply text-xs block;
-      }
-    }
-    td:first-child,
-    td:last-child {
-      @apply content-start;
-    }
-  }
+  display: block;
+}
+
+.shifts-tally h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.shifts-tally ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.shifts-tally table {
+  border-collapse: collapse;
+  border: 1px solid #718096;
+  background-color: #2d3748;
+  width: 100%;
+  table-layout: auto;
+}
+
+.shifts-tally table thead {
+  background-color: #4a5568;
+}
+
+.shifts-tally table thead th:first-child {
+  background-color: #000000;
+}
+
+.shifts-tally table th,
+.shifts-tally table td {
+  border: 1px solid #4a5568;
+  font-weight: normal;
+}
+
+.shifts-tally table small {
+  font-size: 0.75rem;
+  display: block;
+}
+
+.shifts-tally table td:first-child,
+.shifts-tally table td:last-child {
+  text-align: left;
 }
