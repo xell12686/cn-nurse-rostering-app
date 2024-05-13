@@ -1,3 +1,33 @@
+# Code Nation Test: Nurse Rostering
+## Submitted by James Lacandula
+
+## Tips:
+
+- We're looking for a clear and readable solution.
+- The quality of your solution should be at a level you would be happy to produce in your
+everyday life as a software developer.
+- How you solve the problem is just as important as getting a complete solution.
+- We're not looking for you to handle every possible edge case.
+- We expect the code for building rosters to be your own.
+
+## Challenge:
+- In a hospital environment, nurses work a rotating shift system. There are three work shifts per day:
+a morning shift, an evening shift and a night shift.
+- Each day, all three shift needs to be filled.
+- You have been tasked with developing a rostering system which can calculate and output the
+nursing roster for any specified month
+
+## Monthly Roster Requirements:
+
+- Nurses must not be expected to work more than one shift per day.
+- To maintain a healthy work/life balance, no nurse can be asked to work for more than 5 days in row.
+- Similarly, no nurse can be expected to work more than five night shifts per month.
+- Days off must occur in groups of two or more.
+
+
+##
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -16,21 +46,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
