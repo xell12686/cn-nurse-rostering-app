@@ -20,7 +20,8 @@
         @apply text-xs block;
       }
     }
-    td:first-child, td:last-child {
+    td:first-child,
+    td:last-child {
       @apply content-start;
     }
   }

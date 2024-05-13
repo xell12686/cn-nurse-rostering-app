@@ -1,6 +1,7 @@
 # Code Nation Test: Nurse Rostering
 
-## Submitted by James Lacandula
+Submitted by:
+James Lacandula
 
 ## Tips:
 
