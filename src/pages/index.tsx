@@ -33,7 +33,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="p-5">
+    <div className="p-5 flex flex-col gap-10">
       <h1 className="text-2xl font-bold">CodeNation Test: Nurse Rostering</h1>
       <MonthlyRoster nurses={nurses} month={month} year={year} />
     </div>
