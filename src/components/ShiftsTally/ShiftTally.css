@@ -1,0 +1,27 @@
+.shifts-tally {
+  h3 {
+    @apply text-xl font-semibold;
+  }
+  ol {
+    @apply list-decimal list-inside;
+  }
+  table {
+    @apply border-collapse border border-slate-500 bg-slate-800 table-auto w-full;
+    thead {
+      @apply bg-slate-700;
+      th:first-child {
+        @apply bg-black;
+      }
+    }
+    th,
+    td {
+      @apply border border-slate-600 font-normal;
+      small {
+        @apply text-xs block;
+      }
+    }
+    td:first-child, td:last-child {
+      @apply content-start;
+    }
+  }
+}

@@ -21,6 +21,25 @@ export function selectNurseForShift(
     return true;
   });
 
+  // Sort by least number of total shifts worked
+  suitableNurses.sort((a, b) => {
+    // Ensure 'shifts' is initialized and then calculate total shifts
+    const shiftsA = a.shifts
+      ? Object.keys(a.shifts).reduce(
+          (acc, cur) => acc + a.shifts[cur].length,
+          0,
+        )
+      : 0;
+    const shiftsB = b.shifts
+      ? Object.keys(b.shifts).reduce(
+          (acc, cur) => acc + b.shifts[cur].length,
+          0,
+        )
+      : 0;
+
+    return shiftsA - shiftsB;
+  });
+
   // Return the first suitable nurse based on their original list order
   return suitableNurses.length > 0 ? suitableNurses[0] : null;
 }
@@ -41,8 +60,11 @@ export function updateNurseSchedule(
   // Update the actual nurse object
   nurse.shifts = newShifts;
   nurse.lastWorkDay = day;
-  nurse.consecutiveWorkDays =
-    nurse.lastWorkDay === day - 1 ? nurse.consecutiveWorkDays + 1 : 1;
+  if (nurse.lastWorkDay === day - 1) {
+    nurse.consecutiveWorkDays += 1;
+  } else {
+    nurse.consecutiveWorkDays = 1; // Reset if there's a day gap
+  }
   if (shift === "Night") {
     nurse.totalNightShifts += 1;
   }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MonthlyRoster from "@/components/MonthlyRoster";
 import { Nurse } from "@/types";
+import ShiftsTally from "@/components/ShiftsTally";
 
 const HomePage = () => {
   const [nurses, setNurses] = useState<Nurse[]>([]);
@@ -36,6 +37,7 @@ const HomePage = () => {
     <div className="p-5 flex flex-col gap-10">
       <h1 className="text-2xl font-bold">CodeNation Test: Nurse Rostering</h1>
       <MonthlyRoster nurses={nurses} month={month} year={year} />
+      <ShiftsTally nurses={nurses} />
     </div>
   );
 };

@@ -68,18 +68,16 @@ const MonthlyRoster: React.FC<MonthlyRosterProps> = ({
           </tbody>
         </table>
       </div>
-      <div className="unassigned-nurses">
-        <h3>Unassigned Nurses for {formattedDate}</h3>
-        {unassignedNurses.length > 0 ? (
+      {unassignedNurses.length > 0 && (
+        <div className="unassigned-nurses">
+          <h3>Unassigned Nurses for {formattedDate}</h3>
           <ol>
             {unassignedNurses.map((nurse, index) => (
               <li key={index}>{nurse.name}</li>
             ))}
           </ol>
-        ) : (
-          <p>All nurses have been assigned shifts for this period.</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

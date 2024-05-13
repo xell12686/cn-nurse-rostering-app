@@ -24,7 +24,11 @@
 - Nurses must not be expected to work more than one shift per day.
 - To maintain a healthy work/life balance, no nurse can be asked to work for more than 5 days in row.
 - Similarly, no nurse can be expected to work more than five night shifts per month.
-- Days off must occur in groups of two or more.
+- Days off must occur in groups of two or more consecutive days
+
+## Data source
+
+- A list of rosterable nurses has been provided in the file public/nurses.txt.
 
 ##
 
