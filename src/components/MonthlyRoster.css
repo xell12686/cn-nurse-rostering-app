@@ -1,59 +1,61 @@
 .roster-container {
-    @apply flex flex-col gap-10;
-    .table-wrap {
-        @apply overflow-x-auto relative;
+  @apply flex flex-col gap-10;
+  .table-wrap {
+    @apply overflow-x-auto relative;
+  }
+  table {
+    @apply border-collapse border border-slate-500 bg-slate-800 table-auto w-full;
+    thead {
+      @apply bg-slate-700;
+      th:first-child {
+        @apply bg-black;
+      }
     }
-    table {
-        @apply border-collapse border border-slate-500 bg-slate-800 table-auto w-full;
-        thead {
-            @apply bg-slate-700;
-            th:first-child {
-                @apply bg-black;
-            }
-        }
-        th, td {
-            @apply border border-slate-600 font-normal p-3;
-            small {
-                @apply text-xs block;
-            }
-        }
-        th:first-child, td:first-child {
-            position: sticky;
-            left: -1px;
-            background-color: inherit; /* Ensures the background matches the row */
-            z-index: 1; /* Make sure the sticky column is above the scrollable content */
-        }
-        tr {
-            td:first-child {
-                @apply text-center font-bold;
-            }
-        }
-        tr.Morning {
-            td:first-child {
-                @apply bg-yellow-500 text-black;
-            }
-        }
-        tr.Evening {
-            td:first-child {
-                @apply bg-red-800;
-            }
-        }
-        tr.Night {
-            td:first-child {
-                @apply bg-blue-700;
-            }
-        }
+    th,
+    td {
+      @apply border border-slate-600 font-normal p-3;
+      small {
+        @apply text-xs block;
+      }
     }
+    th:first-child,
+    td:first-child {
+      position: sticky;
+      left: -1px;
+      background-color: inherit; /* Ensures the background matches the row */
+      z-index: 1; /* Make sure the sticky column is above the scrollable content */
+    }
+    tr {
+      td:first-child {
+        @apply text-center font-bold;
+      }
+    }
+    tr.Morning {
+      td:first-child {
+        @apply bg-yellow-500 text-black;
+      }
+    }
+    tr.Evening {
+      td:first-child {
+        @apply bg-red-800;
+      }
+    }
+    tr.Night {
+      td:first-child {
+        @apply bg-blue-700;
+      }
+    }
+  }
 }
 
 .unassigned-nurses {
-    h3 {
-        @apply text-xl font-semibold;
+  h3 {
+    @apply text-xl font-semibold;
+  }
+  ol {
+    @apply list-decimal list-inside px-1 my-5 flex gap-4 flex-wrap justify-start;
+    li {
+      @apply px-0 mx-0 marker:text-slate-700;
     }
-    ol {
-        @apply list-decimal list-inside px-1 my-5 flex gap-4 flex-wrap justify-start;
-        li {
-            @apply px-0 mx-0 marker:text-slate-700;
-        }
-    }
+  }
 }

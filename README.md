@@ -1,21 +1,23 @@
 # Code Nation Test: Nurse Rostering
+
 ## Submitted by James Lacandula
 
 ## Tips:
 
 - We're looking for a clear and readable solution.
 - The quality of your solution should be at a level you would be happy to produce in your
-everyday life as a software developer.
+  everyday life as a software developer.
 - How you solve the problem is just as important as getting a complete solution.
 - We're not looking for you to handle every possible edge case.
 - We expect the code for building rosters to be your own.
 
 ## Challenge:
+
 - In a hospital environment, nurses work a rotating shift system. There are three work shifts per day:
-a morning shift, an evening shift and a night shift.
+  a morning shift, an evening shift and a night shift.
 - Each day, all three shift needs to be filled.
 - You have been tasked with developing a rostering system which can calculate and output the
-nursing roster for any specified month
+  nursing roster for any specified month
 
 ## Monthly Roster Requirements:
 
@@ -24,9 +26,7 @@ nursing roster for any specified month
 - Similarly, no nurse can be expected to work more than five night shifts per month.
 - Days off must occur in groups of two or more.
 
-
 ##
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
