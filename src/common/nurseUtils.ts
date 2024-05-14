@@ -41,6 +41,7 @@ export function selectNurseForShift(
   });
 
   // Return the first suitable nurse based on their original list order
+  console.log("suitableNurses: ", suitableNurses);
   return suitableNurses.length > 0 ? suitableNurses[0] : null;
 }
 
@@ -59,14 +60,16 @@ export function updateNurseSchedule(
 
   // Update the actual nurse object
   nurse.shifts = newShifts;
-  nurse.lastWorkDay = day;
   if (nurse.lastWorkDay === day - 1) {
     nurse.consecutiveWorkDays += 1;
   } else {
     nurse.consecutiveWorkDays = 1; // Reset if there's a day gap
   }
+  nurse.lastWorkDay = day;
+
   if (shift === "Night") {
-    nurse.totalNightShifts += 1;
+    nurse.totalNightShifts = (nurse.totalNightShifts || 0) + 1;
   }
+
   nurse.hasShifts = true;
 }
