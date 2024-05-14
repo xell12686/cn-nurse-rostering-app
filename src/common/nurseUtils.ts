@@ -5,7 +5,6 @@ export function selectNurseForShift(
   shift: ShiftType,
   day: number,
 ): Nurse | null {
-
   const suitableNurses = nurses.filter((nurse) => {
     if (shift === "Night" && nurse.totalNightShifts >= 5) {
       return false;
@@ -19,22 +18,22 @@ export function selectNurseForShift(
     return true;
   });
 
-  suitableNurses.sort((a, b) => {
-    const shiftsA = a.shifts
-      ? Object.keys(a.shifts).reduce(
-          (acc, cur) => acc + a.shifts[cur].length,
-          0,
-        )
-      : 0;
-    const shiftsB = b.shifts
-      ? Object.keys(b.shifts).reduce(
-          (acc, cur) => acc + b.shifts[cur].length,
-          0,
-        )
-      : 0;
+  // suitableNurses.sort((a, b) => {
+  //   const shiftsA = a.shifts
+  //     ? Object.keys(a.shifts).reduce(
+  //         (acc, cur) => acc + a.shifts[cur].length,
+  //         0,
+  //       )
+  //     : 0;
+  //   const shiftsB = b.shifts
+  //     ? Object.keys(b.shifts).reduce(
+  //         (acc, cur) => acc + b.shifts[cur].length,
+  //         0,
+  //       )
+  //     : 0;
 
-    return shiftsA - shiftsB;
-  });
+  //   return shiftsA - shiftsB;
+  // });
 
   console.log("suitableNurses: ", suitableNurses);
 
