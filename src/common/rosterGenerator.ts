@@ -24,7 +24,6 @@ export function generateRoster(
       const typedShift = shift as ShiftType;
       while (dailyAssignment.shifts[typedShift].length < 5) {
         const nurse = selectNurseForShift(nurses, typedShift, day);
-        console.log("selectNurseForShift: ", nurse);
         if (!nurse) break;
         dailyAssignment.shifts[typedShift].push(nurse);
         updateNurseSchedule(nurse, typedShift, day);

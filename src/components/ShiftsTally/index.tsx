@@ -24,8 +24,8 @@ const ShiftsTally: React.FC<ShiftsTallyProps> = ({ roster }) => {
 
   return (
     <div className="shifts-tally">
-      <h3>Nurses Shift Tally:</h3>
-      <table>
+      <h3 className="text-left mb-5">Nurses Shift Tally:</h3>
+      <table className="max-w-xs text-center">
         <thead>
           <tr>
             <th>Name</th>

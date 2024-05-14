@@ -1,11 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
-
-interface Nurse {
-  id: string;
-  name: string;
-}
+import { Nurse } from "@/types";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -16,6 +12,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const nurses: Nurse[] = names.map((name, index) => ({
       id: `nurse-${index}`,
       name,
+      totalNightShifts: 0,
+      consecutiveWorkDays: 0,
+      lastWorkDay: 0,
+      shifts: {},
+      hasShifts: false,
     }));
 
     res.status(200).json({ nurses });
