@@ -1,11 +1,11 @@
-# Code Nation Test: Nurse Rostering
+# Next.js Solution: Nurse Rostering
 
 Submitted by:
 James Lacandula
 
-## Tips:
+## Requirements:
 
-- We're looking for a clear and readable solution.
+- A clear and readable solution.
 - The quality of your solution should be at a level you would be happy to produce in your
   everyday life as a software developer.
 - How you solve the problem is just as important as getting a complete solution.
