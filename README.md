@@ -1,6 +1,6 @@
 # Next.js Solution: Nurse Rostering
 
-Submitted by:
+by:
 James Lacandula
 
 ## Requirements:
